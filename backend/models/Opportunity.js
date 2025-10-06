@@ -1,12 +1,8 @@
-const mongoose = require("mongoose");
-
+const mongoose = require('mongoose');
 const opportunitySchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
-  location: String,
-  date: String,
-  link: String,
-  createdAt: { type: Date, default: Date.now }
-});
-
-module.exports = mongoose.model("Opportunity", opportunitySchema);
+  status: { type: String, enum: ['open', 'closed'], default: 'open' },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+}, { timestamps: true });
+module.exports = mongoose.model('Opportunity', opportunitySchema);

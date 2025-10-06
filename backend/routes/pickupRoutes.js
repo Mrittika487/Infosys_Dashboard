@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { getPickups, createPickup, deletePickup } = require("../controllers/pickupController");
+const pickupController = require('../controllers/pickupController');
 
-router.get("/", getPickups);
-router.post("/", createPickup);
-router.delete("/:id", deletePickup);
+router.get('/', pickupController.getPickups);
+router.post('/', pickupController.createPickup);
+// Add update, delete routes similarly
 
 module.exports = router;

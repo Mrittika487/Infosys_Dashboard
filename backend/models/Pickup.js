@@ -1,13 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const pickupSchema = new mongoose.Schema({
-  address: { type: String, required: true },
-  city: { type: String, required: true },
-  pickupDate: { type: String, required: true },
-  timeSlot: { type: String, required: true },
-  wasteTypes: [{ type: String }],
-  additionalNotes: { type: String },
-  createdAt: { type: Date, default: Date.now }
-});
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  date: { type: Date, required: true },
+  status: { type: String, enum: ['pending', 'completed'], default: 'pending' },
+  location: { type: String, required: true }
+}, { timestamps: true });
 
-module.exports = mongoose.model("Pickup", pickupSchema);
+module.exports = mongoose.model('Pickup', pickupSchema);
